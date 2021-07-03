@@ -19,6 +19,10 @@ const articleSchema = new mongoose.Schema({
   sanitized:{
     type:String,
     required:true
+  },
+  userId:{
+    type:mongoose.Types.ObjectId,
+    ref:'User',
   }
 });
 

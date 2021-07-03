@@ -1,0 +1,12 @@
+<a href="/" class="btn btn-primary">All articles</a>
+<%if(!isAuthenticated){%>
+    
+    <a href="/auth/login" class="btn btn-primary">Login </a>
+    <a href="/auth/signup" class="btn btn-primary">signup </a>
+    <%}%>
+ <%if(isAuthenticated){%>
+ <a href="/admin/new" class="btn btn-success">New article</a>
+ <a href="/admin/articles" class="btn btn-success">My articles</a>
+ <a href="/auth/logout" class="btn btn-primary">logout</a>
+ 
+ <%}%>

@@ -10,9 +10,9 @@
 <body>
     <div class="container">
         
-        <%console.log(isAuthenticated);%>
-<%- include('./includes/nav.ejs')%>
-<h1 class="mb-4">Blog articles</h1>
+        <%console.log("admin index.ejs ",isAuthenticated)%>
+        <%- include('../includes/nav.ejs')%>
+        <h1 class="mb-4">My articles</h1>
 
     <% articles.forEach(art=>{ %>
         <div class="card mt-4">
@@ -20,11 +20,11 @@
                 <h4 class="card-title"><%=art.title %></h4>
                 <div class="card-subtitle text-muted mb-2"><%=art.createdAt.toLocaleString() %></div>
                 <div class="card-text mb-2"><p><%=art.description %></p></div>
-                <a href="articles/<%=art._id%>" class="btn btn-primary">Read More</a>
-                <!-- <a href="articles/edit/<%=art._id%>" class="btn btn-success"> Edit </a>
-                <form action="articles/delete/<%=art._id%>" class="d-inline" method="POST">
+                <a href="/articles/<%=art._id%>" class="btn btn-primary">Read More</a>
+                <a href="/admin/edit/<%=art._id%>" class="btn btn-success"> Edit </a>
+                <form action="/admin/delete/<%=art._id%>" class="d-inline" method="POST">
                     <button type="submit" class="btn btn-danger">Delete</button>
-                </form> -->
+                </form>
             </div>
         </div>
     

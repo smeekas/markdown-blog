@@ -26,6 +26,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: store,
+    
   })
 );
 app.use(async (req, res, next) => {
@@ -48,7 +49,7 @@ app.use(async (req, res, next) => {
 });
 
 app.use(async (req,res,next)=>{
-  console.log("middle",req.session.isLoggedIn);
+  console.log("middle",await req.session.isLoggedIn);
   res.locals.isAuthenticated=await req.session.isLoggedIn;
   next(); 
 })
@@ -74,6 +75,7 @@ mongoose.connect(
 );
 //!protect routes using middleware
 //! add admin blogs list and delete & edit
-//! navbar
+//! navbar styling
 //! may be upvote 
 //! error checking and validation
+//! preview of markdown

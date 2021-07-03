@@ -8,9 +8,10 @@
     <title>Document</title>
 </head>
 <body>
+    <%- include('../includes/nav.ejs')%>
     <div class="container">
         <h1 class="mb-4">New article</h1>
-        <form action="/articles/new" method="POST">
+        <form action="/admin/new" method="POST">
             <div class="form-group">
                 <label for="title">title</label>
                 <input required type="text" name="title" id="title" class="form-control" value="<%=title%>">
