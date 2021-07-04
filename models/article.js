@@ -20,6 +20,10 @@ const articleSchema = new mongoose.Schema({
     type:String,
     required:true
   },
+  impression:{
+    type:Number,
+    default:0
+  },
   userId:{
     type:mongoose.Types.ObjectId,
     ref:'User',

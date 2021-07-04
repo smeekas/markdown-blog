@@ -53,12 +53,8 @@ app.use(async (req,res,next)=>{
   res.locals.isAuthenticated=await req.session.isLoggedIn;
   next(); 
 })
-app.get("/", async (req, res, next) => {
-  const articles = await Article.find().sort({ createdAt: "desc" });
-  res.render("index.ejs", {
-    articles: articles,
-  });
-});
+const serverController=require('./controller/serverctr');
+app.get("/", serverController);
 app.use("/articles", articleRoutes);
 app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
@@ -73,9 +69,13 @@ mongoose.connect(
     console.log("connected..");
   }
 );
-//!protect routes using middleware
-//! add admin blogs list and delete & edit
+//!protect routes using middleware✅
+//! add admin blogs list and delete & edit✅
 //! navbar styling
-//! may be upvote 
-//! error checking and validation
+//! error checking and validation(sign up & login)  security
 //! preview of markdown
+//! search based on title
+//! pagination✅
+//! blogs per page filter
+//! sort based on views, date
+//! impression server side✅

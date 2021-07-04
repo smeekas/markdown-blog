@@ -37,9 +37,10 @@ module.exports.postlogin=async (req,res,next)=>{
     
     try{
     const user=await User.findOne({email:email});
-    console.log(user._doc)
+    // console.log(user._doc)
     if(!user){
-        throw new Error("no user found!");
+        // throw new Error("no user found!");
+        return res.render('auth/login');
     }
     if(user.password===pass){
         req.session.user=await user;

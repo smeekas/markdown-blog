@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        
-        <%console.log(isAuthenticated);%>
-<%- include('./includes/nav.ejs')%>
-<h1 class="mb-4">Blog articles</h1>
+      <%console.log(isAuthenticated);%> <%- include('./includes/nav.ejs')%>
+      <h1 class="mb-4">Blog articles</h1>
 
-    <% articles.forEach(art=>{ %>
-        <div class="card mt-4">
-            <div class="card-body">
-                <h4 class="card-title"><%=art.title %></h4>
-                <div class="card-subtitle text-muted mb-2"><%=art.createdAt.toLocaleString() %></div>
-                <div class="card-text mb-2"><p><%=art.description %></p></div>
-                <a href="articles/<%=art._id%>" class="btn btn-primary">Read More</a>
-                <!-- <a href="articles/edit/<%=art._id%>" class="btn btn-success"> Edit </a>
+      <% articles.forEach(art=>{ %>
+      <div class="card mt-4">
+        <div class="card-body">
+          <h4 class="card-title"><%=art.title %></h4>
+          <div class="card-subtitle text-muted mb-2">
+            <%=art.createdAt.toLocaleString() %>
+          </div>
+          <div class="card-text mb-2"><p><%=art.description %></p></div>
+          <a href="articles/<%=art._id%>" class="btn btn-primary">Read More</a>
+          <!-- <a href="articles/edit/<%=art._id%>" class="btn btn-success"> Edit </a>
                 <form action="articles/delete/<%=art._id%>" class="d-inline" method="POST">
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form> -->
-            </div>
         </div>
-    
-    <%})%>
-</div>
-</body>
+      </div>
+
+      <%})%> 
+
+      
+      
+      <%- include('./includes/pagination.ejs',{ nextPage: nextPage,
+      prevPage: prevPage, currPage: currPage, hasNextPage: hasNextPage,
+      hasPrevPage: hasPrevPage, lastPage: lastPage})%>
+    </div>
+  </body>
 </html>

@@ -57,7 +57,11 @@ module.exports.postnew = async (req, res, next) => {
 module.exports.postedit = async (req, res, next) => {
   console.log("post edit");
   const article = await Article.findById(req.params.id);
+
   article.title = req.body.title;
+  if(req.session.user._id.toString()!==article.userId.toString()){
+    return res.redirect('/');
+  }
   article.description = req.body.description;
   article.markdown = req.body.markdown;
   const sanitized = dompurify.sanitize(marked(req.body.markdown));
@@ -68,6 +72,9 @@ module.exports.postedit = async (req, res, next) => {
 
 module.exports.getedit = async (req, res, next) => {
   const article = await Article.findById(req.params.id);
+  if(req.session.user._id.toString()!==article.userId.toString()){
+    return res.redirect('/');
+  }
   res.render("articles/edit", { article: article });
 };
 module.exports.postdelete = async (req, res, next) => {

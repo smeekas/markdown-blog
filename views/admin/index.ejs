@@ -17,6 +17,8 @@
     <% articles.forEach(art=>{ %>
         <div class="card mt-4">
             <div class="card-body">
+                <div class="d-flex justify-content-center">
+                   <div>
                 <h4 class="card-title"><%=art.title %></h4>
                 <div class="card-subtitle text-muted mb-2"><%=art.createdAt.toLocaleString() %></div>
                 <div class="card-text mb-2"><p><%=art.description %></p></div>
@@ -25,6 +27,11 @@
                 <form action="/admin/delete/<%=art._id%>" class="d-inline" method="POST">
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
+            </div>
+            <div>
+                <h3>Impression:<%=art.impression%></h3>
+            </div>
+            </div>
             </div>
         </div>
     
