@@ -13,9 +13,10 @@
     <title>Document</title>
   </head>
   <body>
+    <%console.log( isAuthenticated)%>
+     <%- include('./includes/nav.ejs')%>
     <div class="container">
-      <%console.log(isAuthenticated);%> <%- include('./includes/nav.ejs')%>
-      <h1 class="mb-4">Blog articles</h1>
+      <!-- <h1 class="mb-4">Blog articles</h1> -->
 
       <% articles.forEach(art=>{ %>
       <div class="card mt-4">

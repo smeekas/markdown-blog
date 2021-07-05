@@ -1,5 +1,6 @@
-<nav>
-  <ul class="pagination">
+<nav >
+  <ul class="pagination justify-content-center" >
+    
     <%if(currPage!=1 && currPage!=2){%>
         
     <li class="page-item"><a href="?page=1" class="page-link">1</a></li>
@@ -21,5 +22,6 @@
       <a href="?page=<%=lastPage%>" class="page-link"><%=lastPage%></a>
     </li>
     <%}%>
+
   </ul>
 </nav>

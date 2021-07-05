@@ -1,5 +1,6 @@
 const Article = require("../models/article");
-
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+ 
 module.exports = async (req, res, next) => {
   const page = +req.query.page || 1;
   const ITEMS_P_PAGE = 1;
@@ -11,6 +12,7 @@ module.exports = async (req, res, next) => {
     .sort({ createdAt: "desc" });
 
   res.render("index.ejs", {
+    
     articles: articles,
     totalArticles: totalArticles,
     nextPage: page + 1,

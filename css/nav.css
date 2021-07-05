@@ -1,0 +1,33 @@
+#navbar{
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 1.5rem;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.sub-nav a{
+    color: #fff;
+}
+.sub-nav{
+    display: flex;
+    flex-direction: row;
+}
+.sub-nav a{
+ margin: 0.2rem;
+}
+
+@media screen and (max-width:415px) {
+    header{
+        flex-direction: column;
+    }
+    .article{
+        justify-content: space-evenly;
+    }
+    .auth{
+        justify-content: space-around;
+    }
+}
