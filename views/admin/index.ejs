@@ -1,42 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <title>Document</title>
-    
-</head>
-<body>
+    <link rel="stylesheet" href="/admin-index.css" />
+  </head>
+  <body>
     <div class="container">
-        
-        <%console.log("admin index.ejs ",isAuthenticated)%>
-        <%- include('../includes/nav.ejs')%>
-        <h1 class="mb-4">My articles</h1>
+      <%console.log("admin index.ejs ",isAuthenticated)%> <%-
+      include('../includes/nav.ejs')%>
+      <%if(articles.length>0){%>
+      <h1 class="mb-4" style="text-align: center;">My articles</h1>
 
-    <% articles.forEach(art=>{ %>
-        <div class="card mt-4">
-            <div class="card-body">
-                <div class="d-flex justify-content-center">
-                   <div>
-                <h4 class="card-title"><%=art.title %></h4>
-                <div class="card-subtitle text-muted mb-2"><%=art.createdAt.toLocaleString() %></div>
-                <div class="card-text mb-2"><p><%=art.description %></p></div>
-                <a href="/articles/<%=art._id%>" class="btn btn-primary">Read More</a>
-                <a href="/admin/edit/<%=art._id%>" class="btn btn-success"> Edit </a>
-                <form action="/admin/delete/<%=art._id%>" class="d-inline" method="POST">
+      <% articles.forEach(art=>{ %>
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-center">
+
+
+            <div class="flex-column">
+            <div class="d-flex justify-content-between">
+                        <div class="p-2">
+                            <h4 class="card-title"><%=art.title %></h4>
+                            <div class="card-subtitle text-muted mb-2">
+                            <%=art.createdAt.toLocaleString() %>
+                            </div>
+                            <div class="card-text mb-2"><p><%=art.description %></p></div>
+                        </div>
+              <div class="p-2">
+                <h3>views:<%=art.impression%></h3>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <a href="/articles/<%=art._id%>" class="btn btn-primary"
+                    >Read More</a
+                  >
+                  <a href="/admin/edit/<%=art._id%>" class="btn btn-success">
+                    Edit
+                  </a>
+                  <!-- <button type="submit" class="btn btn-danger">Delete</button> -->
+                  <form
+                    action="/admin/delete/<%=art._id%>"
+                    class="d-inline"
+                    method="POST"
+                  >
+                  
                     <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </div>
-            <div>
-                <h3>Impression:<%=art.impression%></h3>
-            </div>
-            </div>
+                  </form>
             </div>
         </div>
-    
-    <%})%>
-</div>
-</body>
+
+
+
+
+
+
+
+
+            <!-- <div>
+              <h4 class="card-title"><%=art.title %></h4>
+              <div class="card-subtitle text-muted mb-2">
+                <%=art.createdAt.toLocaleString() %>
+              </div>
+              <div class="card-text mb-2"><p><%=art.description %></p></div>
+              <div class="flex-buttons">
+                <a href="/articles/<%=art._id%>" class="btn btn-primary"
+                  >Read More</a
+                >
+                <a href="/admin/edit/<%=art._id%>" class="btn btn-success">
+                  Edit
+                </a>
+                <form
+                  action="/admin/delete/<%=art._id%>"
+                  class="d-inline"
+                  method="POST"
+                >
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <%})%>
+      <%}else{%>
+        <h1 style="text-align: center;">Write a new article!</h1>
+        <%}%>
+    </div>
+  </body>
 </html>

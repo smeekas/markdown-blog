@@ -3,7 +3,7 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
  
 module.exports = async (req, res, next) => {
   const page = +req.query.page || 1;
-  const ITEMS_P_PAGE = 1;
+  const ITEMS_P_PAGE = 3;
   let totalArticles = await Article.find().countDocuments();
   totalArticles= Number(totalArticles);
   const articles = await Article.find()
@@ -21,5 +21,6 @@ module.exports = async (req, res, next) => {
     hasNextPage: page * ITEMS_P_PAGE < totalArticles,
     hasPrevPage: page > 1,
     lastPage: Math.ceil(totalArticles / ITEMS_P_PAGE),
+    path:""
   });
 };

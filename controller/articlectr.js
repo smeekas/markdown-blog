@@ -19,5 +19,5 @@ module.exports.getarticle = async (req, res, next) => {
     article.impression = article.impression + 1;
     article.save();
   }
-  res.render("articles/show", { article: article });
+  res.render("articles/show", { article: article ,path:"/"});
 };

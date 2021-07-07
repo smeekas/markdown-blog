@@ -2,10 +2,11 @@
 <div id="navbar">
 <header>
   <div class="sub-nav article">
-    <a href="/" class="btn btn-primary active">All articles</a>
+    <% console.log(path)%>
+    <a href="/" class="btn btn-primary <%=path==='/' || path===""?"active":""%>">All articles</a>
     <%if(isAuthenticated){%>
-    <a href="/admin/new" class="btn btn-primary">New article</a>
-    <a href="/admin/articles" class="btn btn-primary">My articles</a>
+    <a href="/admin/new" class="btn btn-primary <%=path==='new'?"active":""%>">New article</a>
+    <a href="/admin/articles" class="btn btn-primary <%=path==='index'?"active":""%>">My articles</a>
     <%}%>
   </div>
   <div class="sub-nav auth">

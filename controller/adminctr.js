@@ -38,7 +38,7 @@ module.exports.postnew = async (req, res, next) => {
   };
   module.exports.getnew = (req, res, next) => {
     console.log("/new get");
-    res.render("articles/new", { title: "", description: "", markdown: "" });
+    res.render("articles/new", { title: "", description: "", markdown: "",path:"new" });
   };
 
   module.exports.getarticles=async (req,res,next)=>{
@@ -46,7 +46,8 @@ module.exports.postnew = async (req, res, next) => {
       const articles=await Article.find({userId:req.session.user._id});
       // console.log(articles);
       res.render('admin/index',{
-        articles:articles
+        articles:articles,
+        path:"index"
       })
     }catch(e){
       console.log("admin getArticles");
@@ -75,10 +76,10 @@ module.exports.getedit = async (req, res, next) => {
   if(req.session.user._id.toString()!==article.userId.toString()){
     return res.redirect('/');
   }
-  res.render("articles/edit", { article: article });
+  res.render("articles/edit", { article: article,path:null});
 };
 module.exports.postdelete = async (req, res, next) => {
   await Article.findByIdAndDelete(req.params.id);
-  res.redirect("/");
+  res.redirect("/admin/articles");
 };
 

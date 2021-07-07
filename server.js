@@ -61,7 +61,7 @@ app.use("/articles", articleRoutes);
 app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
 app.use((req, res, next) => {
-  res.render("404.ejs");
+  res.render("404.ejs",{path:null});
 });
 mongoose.connect(
   MONGODB_URI,
@@ -74,12 +74,14 @@ mongoose.connect(
 //!protect routes using middleware✅
 //! add admin blogs list and delete & edit✅
 //! navbar styling✅
-//! navbar active link
-//! error checking and validation(sign up & login)  security
+//! navbar active link✅
+//! error checking and validation(sign up & login)(with express-validator and boostrap alert)✅
+//!  security
+//!500 error
 //! preview of markdown
 //! search based on title
 //! pagination✅
 //! blogs per page filter
 //! sort based on views, date
 //! impression server side✅
-//! mobile view button fix in admin (read more, edit, delete)
+//! mobile view button fix in admin (read more, edit, delete)✅
