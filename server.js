@@ -63,6 +63,9 @@ app.use("/admin", adminRoutes);
 app.use((req, res, next) => {
   res.render("404.ejs",{path:null});
 });
+app.use((error,req,res,next)=>{
+  res.render('500.ejs',{path:""});
+})
 mongoose.connect(
   MONGODB_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },

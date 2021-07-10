@@ -33,7 +33,9 @@ module.exports.postnew = async (req, res, next) => {
       res.redirect(`/admin/articles`);
     } catch (e) {
       console.log("article new post");
-      console.log(e);
+      const error=new Error(e);
+      error.httpCode=500;
+      return next(error);
     }
   };
   module.exports.getnew = (req, res, next) => {
@@ -63,12 +65,18 @@ module.exports.postedit = async (req, res, next) => {
   if(req.session.user._id.toString()!==article.userId.toString()){
     return res.redirect('/');
   }
+  try{
   article.description = req.body.description;
   article.markdown = req.body.markdown;
   const sanitized = dompurify.sanitize(marked(req.body.markdown));
   article.sanitized = sanitized;
   await article.save();
   res.redirect("/admin/articles");
+  }catch(e){
+    const error=new Error(e);
+      error.httpCode=500;
+      return next(error);
+  }
 };
 
 module.exports.getedit = async (req, res, next) => {
@@ -79,7 +87,13 @@ module.exports.getedit = async (req, res, next) => {
   res.render("articles/edit", { article: article,path:null});
 };
 module.exports.postdelete = async (req, res, next) => {
+  try{
   await Article.findByIdAndDelete(req.params.id);
   res.redirect("/admin/articles");
+  }catch(e){
+    const error=new Error(e);
+      error.httpCode=500;
+      return next(error);
+  }
 };
 

@@ -4,11 +4,12 @@ const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
 
 module.exports.getsignup = (req, res, next) => {
-  res.render("auth/signup", { errors: false, email: "", password: "" });
+  res.render("auth/signup", { errors: false, email: "", password: "",errorMessage:[] });
 };
 
 module.exports.getlogin = (req, res, next) => {
-  res.render("auth/login", { errors: false, email: "", password: "" });
+  console.log("get LOGIN")
+  res.render("auth/login", { errors: false, email: "", password: "",errorMessage:[] });
 };
 
 module.exports.postsignup = async (req, res, next) => {
@@ -51,6 +52,9 @@ module.exports.postsignup = async (req, res, next) => {
     res.redirect("/auth/login");
   } catch (e) {
     console.log("post signup");
+    const error=new Error(e);
+      error.httpCode=500;
+      return next(error);
   }
 };
 
@@ -58,6 +62,7 @@ module.exports.postlogin = async (req, res, next) => {
   const email = req.body.email;
   const pass = req.body.password;
   const errors=validationResult(req);
+  console.log(errors);
   if (!errors.isEmpty()) {
     // console.log(errors.array());
     // return;
@@ -97,8 +102,10 @@ module.exports.postlogin = async (req, res, next) => {
       });
     }
   } catch (e) {
-    console.log(e);
-    // console.log("post login");
+    console.log("post login");
+    const error=new Error(e);
+      error.httpCode=500;
+      return next(error);
   }
 };
 module.exports.getlogout = async (req, res, next) => {

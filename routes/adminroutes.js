@@ -2,6 +2,7 @@ const express=require('express');
 const router=express.Router();
 const adminController=require('../controller/adminctr');
 const auth=require('../middleware/auth');
+const {body}=require('express-validator');
 router.get('/new',auth,adminController.getnew);
 router.post('/new',auth,adminController.postnew);
 router.get('/articles',auth,adminController.getarticles);
